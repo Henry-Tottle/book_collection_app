@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 11.4.2-MariaDB-ubu2404)
 # Database: lit_logger
-# Generation Time: 2024-07-29 13:41:07 +0000
+# Generation Time: 2024-07-29 14:42:42 +0000
 # ************************************************************
 
 
@@ -50,49 +50,6 @@ VALUES
 	(9,'VanderMeer','Jeff','American','Male');
 
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table books
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `books`;
-
-CREATE TABLE `books` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `isbn` varchar(255) NOT NULL,
-  `format` varchar(255) DEFAULT NULL,
-  `publisher` varchar(255) DEFAULT NULL,
-  `publication_date` date DEFAULT NULL,
-  `genre_1` varchar(255) NOT NULL,
-  `genre_2` varchar(255) DEFAULT NULL,
-  `genre_3` varchar(255) DEFAULT NULL,
-  `image` varchar(255) NOT NULL,
-  `rating` float DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
-
-LOCK TABLES `books` WRITE;
-/*!40000 ALTER TABLE `books` DISABLE KEYS */;
-
-INSERT INTO `books` (`id`, `title`, `author_id`, `isbn`, `format`, `publisher`, `publication_date`, `genre_1`, `genre_2`, `genre_3`, `image`, `rating`)
-VALUES
-	(1,'Translation State',1,'9780356517933','paperback','Little, Brown Book Group','2024-05-09','Science Fiction','Space Opera','Identity','https://jackets.dmmserver.com/media/356/97803565/9780356517933.jpg',5),
-	(2,'Kings of the Wyld',2,'9780356509020','paperback','Little, Brown Book Group','2017-02-23','Fantasy','High Fantasy','Action','https://jackets.dmmserver.com/media/356/97803565/9780356509020.jpg',5),
-	(3,'Fifth Season',3,'9780356508191','paperback','Little, Brown Book Group','2016-07-28','Fantasy','Dystopia','Apocalypse','https://jackets.dmmserver.com/media/356/97803565/9780356508191.jpg',5),
-	(4,'The Will of the Many',4,'9781982141172','hardback','Simon & Schuster','2023-06-22','Fantasy','Espionage','Academy','https://jackets.dmmserver.com/media/356/97819821/9781982141172.jpg',5),
-	(5,'The Justice of Kings',5,'9780356516400','paperback','Little, Brown Book Group','2022-08-25','Fantasy','Grimdark',NULL,'https://jackets.dmmserver.com/media/356/97803565/9780356516400.jpg',4),
-	(6,'The Tyranny of Faith',5,'9780356516462','paperback','Little, Brown Book Group\n','2023-08-10','Fantasy','Grimdark',NULL,'https://jackets.dmmserver.com/media/356/97803565/9780356516462.jpg',4.5),
-	(7,'The Trials of Empire',5,'9780356516509','paperback','Little, Brown Book Group','2024-08-08','Fantasy','Grimdark',NULL,'https://jackets.dmmserver.com/media/356/97803565/9780356516509.jpg',3.5),
-	(8,'The Adventures of Amina Al-Sirafi',6,'9780008381387','paperback','HarperCollins Publishers','2024-02-29','Fantasy','Pirate','Middle East','https://jackets.dmmserver.com/media/356/97800083/9780008381387.jpg',4.5),
-	(9,'The Hearts of Men',7,'9781509827909','paperback','Pan Macmillan','2018-03-22','Contemporary','Coming of Age','Sense of Place','https://jackets.dmmserver.com/media/356/97815098/9781509827909.jpg',5),
-	(10,'Titanium Noir',8,'9781472156907','paperback','Little, Brown Book Group','2024-02-01','Science Fiction','Noir','Crime','https://jackets.dmmserver.com/media/356/97814721/9781472156907.jpg',5),
-	(11,'Annihilation',9,'9780008139100','paperback','HarperCollins Publishers','2015-07-30','Science Fiction','Weird','Horror','https://jackets.dmmserver.com/media/356/97800081/9780008139100.jpg',4.5),
-	(12,'Authority',9,'9780008139117','paperback','HarperCollins Publishers','2025-07-30','Science Fiction','Weird','Horror','https://jackets.dmmserver.com/media/356/97800081/9780008139117.jpg',4.8);
-
-/*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
