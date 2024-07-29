@@ -11,7 +11,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     require_once'database_connect.php';
     $query = $db->prepare('SELECT * FROM `books`, `authors`');
-    $query = execute();
+    $query->execute();
     $results = $query->fetchAll();
     var_dump($results);
     ?>
