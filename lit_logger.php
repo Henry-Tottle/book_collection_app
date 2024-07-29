@@ -10,10 +10,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <?php
 
     require_once'database_connect.php';
-    $query = $db->prepare('SELECT * FROM `books`, `authors`');
-    $query->execute();
-    $results = $query->fetchAll();
-    var_dump($results);
+
     ?>
 </head>
 <body>
@@ -27,7 +24,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer"/>
     </nav>
 </header>
 <section>
-    <div></div>
+    <div>
+        <h1>Lit_Logger</h1>
+        <button>Log Book</button>
+    </div>
+</section>
+<section class="highRatings">
+<div>
+    <?php
+
+    ?>
+</div>
+
+</section>
+<section>
+    <?php
+foreach ($books as $book)
+{
+    echo '<div><img src="' . $book['image'] . '">' . $book['title'] . '<br>' . $book['author_id'] . '<br>' . $book['isbn'] . '</div>';
+}
+    ?>
 </section>
 
 
