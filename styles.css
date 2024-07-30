@@ -1,4 +1,57 @@
-body {
+* {
     box-sizing: border-box;
 }
+@font-face {
+    font-family: "PPTalisman Compact Bold";
+    src: url("/font/PPTalisman-Compact-Extrabold.otf");
+}
+@font-face {
+    font-family: "PPTalisman Regular";
+    src: url("/font/PPTalisman-Compact-Regular.otf");
+}
+@font-face {
+    font-family: "PPTalisman Condensed";
+    src: url("/font/PPTalisman-Condensed-Regular.otf");
+}
 
+body {
+    margin : 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: chocolate;
+    padding: 0.5rem 0;
+}
+
+.highRatings h1, .library h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+.hero div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+    background-color: cornflowerblue;
+}
+.highRatings .library {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.highRatings div, .library div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.library div div {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}

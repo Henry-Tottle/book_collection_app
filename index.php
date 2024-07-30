@@ -24,30 +24,31 @@ crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <button>Library</button>
     </nav>
 </header>
-<section>
+<section class="hero">
     <div>
         <h1>Lit_Logger</h1>
         <button>Log Book</button>
     </div>
 </section>
 <section class="highRatings">
-    <h1>Your highest rated reads:</h1>
+    <h1>Your highest rated reads</h1>
     <div>
     <?php
     foreach ($highRatings as $book)
     {
-        echo '<div><img alt="cover image for book" src="' . $book['image'] . '">' . $book['title'] . '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['publication_date'] . '</div>';
+        echo '<div><img alt="cover image for book" src="' . $book['image'] . '">' . $book['title'] .
+            '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['publication_date'] . '<br>Rating: ' . $book['rating'] .'</div>';
     }
         ?>
     </div>
 
 </section>
 <section class="library">
-    <h1>Your Library:</h1>
+    <h1>Your Library</h1>
     <?php
 foreach ($books as $book)
 {
-    echo '<div><img alt="cover image for book" src="' . $book['image'] . '">' . $book['title'] . '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['isbn'] . '</div>';
+    echo '<div><img alt="cover image for book" src="' . $book['image'] . '"><div>' . $book['title'] . '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['isbn'] .'<br>Rating: ' . $book['rating'] . '</div></div>';
 }
     ?>
 </section>
