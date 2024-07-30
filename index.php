@@ -11,6 +11,30 @@
     <?php
 
     require_once 'database_connect.php';
+    $query = $db->prepare('SELECT * FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id`');
+    $query->execute();
+    $books = $query->fetchAll();
+
+    $query = $db->prepare('SELECT *  FROM `books` INNER JOIN `authors` 
+    ON `authors`.`id` = `author_id` WHERE `rating` = 5;');
+    $query->execute();
+    $highRatings = $query->fetchAll();
+
+    function dataDisplay($dataInput)
+    {
+        $display = '';
+        foreach ($dataInput as $book) {
+
+         $display .= '<div><img alt="cover image for book" src="'
+                . $book['image'] . '"><div class="data">'
+                . $book['title'] . '<br>' . $book['forename'] . ' '
+                . $book['surname'] . '<br>'
+                . date('d-m-Y',strtotime($book['publication_date']))
+                . '<br>Rating: ' . $book['rating']
+                . '</div></div>';
+        }
+        return $display;
+    }
 
     ?>
 </head>
@@ -40,12 +64,7 @@
     <h1>Your highest rated reads</h1>
     <div>
         <?php
-        foreach ($highRatings as $book) {
-            echo '<div><img alt="cover image for book" src="' . $book['image'] . '"><div class="data">' . $book['title'] .
-                '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['publication_date'] .
-                '<br>Rating: ' . $book['rating'] . '
-                </div></div>';
-        }
+        echo dataDisplay($highRatings);
         ?>
     </div>
 
@@ -54,12 +73,7 @@
     <h1>Your Library</h1>
     <div>
         <?php
-        foreach ($books as $book) {
-            echo '<div><img alt="cover image for book" src="' . $book['image'] . '"><div>' . $book['title'] .
-                '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['isbn'] .
-                '<br>Rating: ' . $book['rating'] .
-                '</div></div>';
-        }
+        echo dataDisplay($books);
         ?>
     </div>
 </section>
