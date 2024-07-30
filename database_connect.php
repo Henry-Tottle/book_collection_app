@@ -11,7 +11,7 @@ $books = $query->fetchAll();
 
 
 
-$query = $db->prepare('SELECT `image`, `title`, `author_id`, `publication_date`, `forename` , `surname`, `rating`  FROM `books` INNER JOIN `authors` 
+$query = $db->prepare('SELECT *  FROM `books` INNER JOIN `authors` 
 ON `authors`.`id` = `author_id` WHERE `rating` = 5;');
 $query->execute();
 $highRatings = $query->fetchAll();
