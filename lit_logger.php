@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
 integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
 crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="styles.css">
 <title>Lit Logger</title>
     <?php
 
@@ -30,18 +31,23 @@ crossorigin="anonymous" referrerpolicy="no-referrer"/>
     </div>
 </section>
 <section class="highRatings">
-<div>
+    <h1>Your highest rated reads:</h1>
+    <div>
     <?php
-
-    ?>
-</div>
+    foreach ($highRatings as $book)
+    {
+        echo '<div><img alt="cover image for book" src="' . $book['image'] . '">' . $book['title'] . '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['publication_date'] . '</div>';
+    }
+        ?>
+    </div>
 
 </section>
-<section>
+<section class="library">
+    <h1>Your Library:</h1>
     <?php
 foreach ($books as $book)
 {
-    echo '<div><img src="' . $book['image'] . '">' . $book['title'] . '<br>' . $book['author_id'] . '<br>' . $book['isbn'] . '</div>';
+    echo '<div><img alt="cover image for book" src="' . $book['image'] . '">' . $book['title'] . '<br>' . $book['forename'] . ' ' . $book['surname'] . '<br>' . $book['isbn'] . '</div>';
 }
     ?>
 </section>
@@ -49,6 +55,8 @@ foreach ($books as $book)
 
 
 
-
+<footer>
+    <a href="#">Back to top ↑</a>
+</footer>
 </body>
 </html>
