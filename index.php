@@ -88,14 +88,17 @@
             <label for="isbnID">ISBN: </label>
             <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
             <label for="formatID">Format: </label>
-            <input id="formatID" type="text" name="format" placeholder="hardback/paperback">
+            <select name="format" id="formatID">
+                <option value="hardback">hardback</option>
+                <option value="paperback">paperback</option>
+            </select>
 
             <label for="publisherID">Publisher: </label>
             <input id="publisherID" type="text" name="publisher">
         </div>
         <div>
             <label for="pubDateID">Publication Date: </label>
-            <input id="pubDatID" type="text" name="publication_date" placeholder="dd-mm-yyyy">
+            <input id="pubDatID" type="date" name="publication_date">
 
             <label for="genre1ID">Genre 1: </label>
             <input id="genre1ID" type="text" name="genre_1" placeholder="Fantasy?">
