@@ -39,6 +39,10 @@ h1 {
 
 }
 
+button {
+    padding: 0.5rem 2rem;
+}
+
 .highRatings h1, .library h1 {
     text-align: center;
     text-decoration: underline;
@@ -70,6 +74,8 @@ h1 {
 img {
     width: 176px;
     height: 270px;
+    filter: drop-shadow(5px 5px 10px #000000);
+    padding-bottom: 5px;
 }
 
 p {
