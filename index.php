@@ -62,7 +62,7 @@
 </section>
 <section class="highRatings">
     <h1>Your highest rated reads</h1>
-    <div>
+    <div class="list">
         <?php
         echo dataDisplay($highRatings);
         ?>
@@ -71,7 +71,7 @@
 </section>
 <section class="library" id="library">
     <h1>Your Library</h1>
-    <div>
+    <div class="list">
         <?php
         echo dataDisplay($books);
         ?>
