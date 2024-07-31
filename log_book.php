@@ -28,6 +28,11 @@
         </div>
     </nav>
 </header>
+<section class="logPage">
+    <div>
+        <h1>This is where books live, log you one!</h1>
+    </div>
+</section>
 <section class="inputForm">
     <form method='POST'>
         <div>
@@ -40,8 +45,8 @@
             <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
             <label for="formatID">Format: </label>
             <select name="format" id="formatID">
-                <option value="hardback">hardback</option>
                 <option value="paperback">paperback</option>
+                <option value="hardback">hardback</option>
             </select>
 
             <label for="publisherID">Publisher: </label>
@@ -65,7 +70,7 @@
             <input type="text" id="imageID" name="image">
             <label for="ratingID">Rating: </label>
             <input type="number" id="ratingID" name="rating" min="1" max="5" step="0.1">
-            <input type="submit" onclick="location.reload()">
+            <input type="submit" class="submit">
         </div>
 <?php
 
@@ -112,5 +117,8 @@ if (isset($_POST['title'])) {
 ?>
     </form>
 </section>
+<footer>
+    <a href="index.php">Back to Library</a>
+</footer>
 </body>
 </html>
