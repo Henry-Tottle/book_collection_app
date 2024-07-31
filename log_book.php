@@ -39,7 +39,7 @@
             <label for="titleID">Title: </label>
             <input id="titleID" type="text" name="title" required>
             <label for="authorID">Author: </label>
-            <input id="authorID" type="text" name="author">
+            <input id="authorID" type="text" name="author" required>
 
             <label for="isbnID">ISBN: </label>
             <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
