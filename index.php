@@ -57,7 +57,7 @@
 <section class="hero">
     <div>
         <h1>Lit_Logger</h1>
-        <button>Log Book</button>
+        <a href="log_book.php"><button>Log Book</button></a>
     </div>
 </section>
 <section class="highRatings">
@@ -77,69 +77,8 @@
         ?>
     </div>
 </section>
-<section class="inputForm">
-    <form method='POST'>
-        <div>
-            <label for="titleID">Title: </label>
-            <input id="titleID" type="text" name="title">
-            <label for="authorID">Author: </label>
-            <input id="authorID" type="text" name="author">
-
-            <label for="isbnID">ISBN: </label>
-            <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
-            <label for="formatID">Format: </label>
-            <select name="format" id="formatID">
-                <option value="hardback">hardback</option>
-                <option value="paperback">paperback</option>
-            </select>
-
-            <label for="publisherID">Publisher: </label>
-            <input id="publisherID" type="text" name="publisher">
-        </div>
-        <div>
-            <label for="pubDateID">Publication Date: </label>
-            <input id="pubDatID" type="date" name="publication_date">
-
-            <label for="genre1ID">Genre 1: </label>
-            <input id="genre1ID" type="text" name="genre_1" placeholder="Fantasy?">
-
-            <label for="genre2ID">Genre 2: </label>
-            <input id="genre2ID" type="text" name="genre_2" placeholder="Grimdark?">
-
-            <label for="genre3ID">Genre 3: </label>
-            <input id="genre3ID" type="text" name="genre_3" placeholder="Coming of Age?">
-
-            <input type="submit">
-        </div>
-
-    </form>
-</section>
-<?php
-$title = trim($_POST['title']);
-$author = trim($_POST['author']);
-$author = explode(' ', $author);
-if (preg_match('/[0-9]{13}/',$_POST['isbn']))
-{
-    $isbn = trim($_POST['isbn']);
-}
-else
-{
-    echo "Please enter a 13 digit ISBN number.";
-}
-$publisher = trim($_POST['publisher']);
-$pubDate = $_POST['publication_date'];
-$genre1 = trim($_POST['genre_1']);
-$genre2 = trim($_POST['genre_2']);
-$genre3 = trim($_POST['genre_3']);
-
-$query = $db->prepare('INSERT INTO `authors` (`forename`, `surname`) VALUES (:forname,:surname)');
-$query->bindParam(':forname', $author[0]);
-$query->bindParam(':surname', $author[1]);
-$query->execute();
 
 
-
-?>
 <footer>
     <a href="#">Back to top ↑</a>
 </footer>
