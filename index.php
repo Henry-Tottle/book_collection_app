@@ -43,7 +43,7 @@
     <nav>
         <div>
             <form>
-                <input type="text" placeholder="search books"><input type="submit" value="search">
+                <input type="search" placeholder="search books">
             </form>
         </div>
         <div>
