@@ -36,13 +36,15 @@
 <section class="inputForm">
     <form method='POST'>
         <div>
-            <label for="titleID">Title: </label>
+            <label for="titleID">* Title: </label>
             <input id="titleID" type="text" name="title" required>
-            <label for="authorID">Author: </label>
-            <input id="authorID" type="text" name="author" required>
+            <label for="forenameID">* Author first name(s): </label>
+            <input id="forenameID" type="text" name="forename" required placeholder="Michael Marshall">
+            <label for="surnameID">* Author surname: </label>
+            <input id="surnameID" type="text" name="surname" required placeholder="Smith">
 
-            <label for="isbnID">ISBN: </label>
-            <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
+            <label for="isbnID">* ISBN: </label>
+            <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13" required>
             <label for="formatID">Format: </label>
             <select name="format" id="formatID">
                 <option value="paperback">paperback</option>
@@ -56,8 +58,8 @@
             <label for="pubDateID">Publication Date: </label>
             <input id="pubDateID" type="date" name="publication_date">
 
-            <label for="genre1ID">Genre 1: </label>
-            <input id="genre1ID" type="text" name="genre_1" placeholder="Fantasy?">
+            <label for="genre1ID" >* Genre 1: </label>
+            <input id="genre1ID" type="text" name="genre_1" placeholder="Fantasy?" required>
 
             <label for="genre2ID">Genre 2: </label>
             <input id="genre2ID" type="text" name="genre_2" placeholder="Grimdark?">
@@ -66,8 +68,8 @@
             <input id="genre3ID" type="text" name="genre_3" placeholder="Coming of Age?">
         </div>
         <div>
-            <label for="imageID">Image address: </label>
-            <input type="text" id="imageID" name="image">
+            <label for="imageID">* Image address: </label>
+            <input type="text" id="imageID" name="image" required>
             <label for="ratingID">Rating: </label>
             <input type="number" id="ratingID" name="rating" min="1" max="5" step="0.1">
             <input type="submit" class="submit">
@@ -75,10 +77,13 @@
 <?php
 
 
-if (isset($_POST['title'])) {
+if (isset($_POST['title']) && isset($_POST['forename'])
+    && isset($_POST['surname']) && isset($_POST['isbn'])
+    && isset($_POST['genre_1']) && isset($_POST['image']))
+{
     $title = trim($_POST['title']);
-    $author = trim($_POST['author']);
-    $author = explode(' ', $author);
+    $forename = trim($_POST['forename']);
+    $surname = trim($_POST['surname']);
     $isbn = trim($_POST['isbn']);
     $format = $_POST['format'];
     $publisher = trim($_POST['publisher']);
@@ -90,8 +95,8 @@ if (isset($_POST['title'])) {
     $rating = $_POST['rating'];
 
     $query = $db->prepare('INSERT INTO `authors` (`forename`, `surname`) VALUES (:forname,:surname)');
-    $query->bindParam(':forname', $author[0]);
-    $query->bindParam(':surname', $author[1]);
+    $query->bindParam(':forname', $forename);
+    $query->bindParam(':surname', $surname);
     $query->execute();
     $authorID = $db->lastInsertId();
     $authorID = intval($authorID);
@@ -111,6 +116,11 @@ if (isset($_POST['title'])) {
     $query->bindParam(':image', $image);
     $query->bindParam(':rating', $rating);
     $query->execute();
+    echo '<div class="success"><h1>BOOK ADDED</h1></div>';
+}
+else
+{
+    echo "<div><br>You must fill in required fields *</div>";
 }
 
 
