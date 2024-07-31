@@ -79,35 +79,35 @@
 </section>
 <section class="inputForm">
     <form method='POST'>
+        <div>
+            <label for="titleID">Title: </label>
+            <input id="titleID" type="text" name="title">
+            <label for="authorID">Author: </label>
+            <input id="authorID" type="text" name="author">
 
-        <label for="titleID">Title: </label>
-        <input id="titleID" type="text" name="title">
+            <label for="isbnID">ISBN: </label>
+            <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
+            <label for="formatID">Format: </label>
+            <input id="formatID" type="text" name="format" placeholder="hardback/paperback">
 
-        <label for="authorID">Author: </label>
-        <input id="authorID" type="text" name="author">
+            <label for="publisherID">Publisher: </label>
+            <input id="publisherID" type="text" name="publisher">
+        </div>
+        <div>
+            <label for="pubDateID">Publication Date: </label>
+            <input id="pubDatID" type="text" name="publication_date" placeholder="dd-mm-yyyy">
 
-        <label for="isbnID">ISBN: </label>
-        <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13">
+            <label for="genre1ID">Genre 1: </label>
+            <input id="genre1ID" type="text" name="genre_1" placeholder="Fantasy?">
 
-        <label for="formatID">Format: </label>
-        <input id="formatID" type="text" name="format" placeholder="hardback/paperback">
+            <label for="genre2ID">Genre 2: </label>
+            <input id="genre2ID" type="text" name="genre_2" placeholder="Grimdark?">
 
-        <label for="publisherID">Publisher: </label>
-        <input id="publisherID" type="text" name="publisher">
+            <label for="genre3ID">Genre 3: </label>
+            <input id="genre3ID" type="text" name="genre_3" placeholder="Coming of Age?">
 
-        <label for="pubDateID">Publication Date: </label>
-        <input id="pubDatID" type="text" name="publication_date" placeholder="dd-mm-yyyy">
-
-        <label for="genre1ID">Genre 1: </label>
-        <input id="genre1ID" type="text" name="genre_1" placeholder="Fantasy?">
-
-        <label for="genre2ID">Genre 2: </label>
-        <input id="genre2ID" type="text" name="genre_2" placeholder="Grimdark?">
-
-        <label for="genre3ID">Genre 3: </label>
-        <input id="genre3ID" type="text" name="genre_3" placeholder="Coming of Age?">
-
-        <input type="submit">
+            <input type="submit">
+        </div>
 
     </form>
 </section>
@@ -129,9 +129,10 @@ $genre1 = trim($_POST['genre_1']);
 $genre2 = trim($_POST['genre_2']);
 $genre3 = trim($_POST['genre_3']);
 
-$query = $db->prepare('INSERT INTO `authors` (`forename`, `surname`) VALUES (`:forname`,`:surname`)');
+$query = $db->prepare('INSERT INTO `authors` (`forename`, `surname`) VALUES (:forname,:surname)');
 $query->bindParam(':forname', $author[0]);
 $query->bindParam(':surname', $author[1]);
+$query->execute();
 
 
 
