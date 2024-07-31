@@ -69,7 +69,7 @@
         </div>
         <div>
             <label for="imageID">* Image address: </label>
-            <input type="text" id="imageID" name="image" required>
+            <input type="url" id="imageID" name="image" required>
             <label for="ratingID">Rating: </label>
             <input type="number" id="ratingID" name="rating" min="1" max="5" step="0.1">
             <input type="submit" class="submit">
@@ -81,16 +81,41 @@ if (isset($_POST['title']) && isset($_POST['forename'])
     && isset($_POST['surname']) && isset($_POST['isbn'])
     && isset($_POST['genre_1']) && isset($_POST['image']))
 {
-    $title = trim($_POST['title']);
-    $forename = trim($_POST['forename']);
-    $surname = trim($_POST['surname']);
-    $isbn = trim($_POST['isbn']);
+
+
+        $title = trim($_POST['title']);
+
+    if (ctype_alpha($_POST['forename']))
+    {
+        $forename = trim($_POST['forename']);
+    }
+    if (ctype_alpha($_POST['surname']))
+    {
+        $surname = trim($_POST['surname']);
+    }
+    if (ctype_digit($_POST['isbn']))
+    {
+        $isbn = trim($_POST['isbn']);
+    }
     $format = $_POST['format'];
-    $publisher = trim($_POST['publisher']);
+
+
+        $publisher = trim($_POST['publisher']);
+
     $pubDate = $_POST['publication_date'];
-    $genre1 = trim($_POST['genre_1']);
-    $genre2 = trim($_POST['genre_2']);
-    $genre3 = trim($_POST['genre_3']);
+    if (ctype_alpha($_POST['genre_1']))
+    {
+        $genre1 = trim($_POST['genre_1']);
+    }
+    if (ctype_alpha($_POST['genre_2']))
+    {
+        $genre2 = trim($_POST['genre_2']);
+    }
+    if (ctype_alpha($_POST['genre_3']))
+    {
+        $genre3 = trim($_POST['genre_3']);
+    }
+
     $image = $_POST['image'];
     $rating = $_POST['rating'];
 
