@@ -42,8 +42,22 @@
 <header>
     <nav>
         <div>
-            <form>
-                <input type="search" placeholder="search books">
+            <form method="GET">
+                <label for="sort">Sort: </label>
+                <select name="sort" id="sort">
+                    <option value="blank" selected disabled hidden>Select an option</option>
+                    <option value="title">Title</option>
+                    <option value="publication_date">Publication Date</option>
+                    <option value="genre_1">Genre</option>
+                    <option value="rating">Rating</option>
+                </select>
+                <label for="sortBy"> by: </label>
+                <select name="sortBy" id="sortBy">
+                    <option value="blank" selected disabled hidden>Ascending/Descending</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+                <input type="submit" value="sort!">
             </form>
         </div>
         <div>
@@ -60,6 +74,24 @@
         <a href="log_book.php"><button>Log Book</button></a>
     </div>
 </section>
+<?php
+if (isset($_GET['sort'], $_GET['sortBy']))
+{
+    ?>
+<section class="library">
+    <div>
+        <h1>Your books, sorted!</h1>
+        <div class="list">
+            <?php
+
+            ?>
+        </div>
+    </div>
+    <a href="index.php">un-sort</a>
+</section>
+<?php
+}
+?>
 <section class="highRatings">
     <h1>Your highest rated reads</h1>
     <div class="list">
