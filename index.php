@@ -30,6 +30,7 @@
                 . $book['title'] . '<br>' . $book['forename'] . ' '
                 . $book['surname'] . '<br>'
                 . date('d-m-Y',strtotime($book['publication_date']))
+                . '<br>ISBN-13: ' . $book['isbn']
                 . '<br>Rating: ' . $book['rating']
                 . '<br>Genre: ' . $book['genre_1']
                 . '</div></div>';
@@ -79,82 +80,27 @@
 <?php
 if (isset($_GET['sort'], $_GET['sortBy']))
 {
-    if($_GET['sortBy'] === 'desc')
+    if ($_GET['sort'] === 'author')
     {
-        if ($_GET['sort'] === 'title')
-        {
-            $query = $db->prepare('SELECT `image`, `title`,`forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `title` DESC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'author')
-        {
-            $query = $db->prepare('SELECT `image`, `title`,`forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `surname` DESC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'publication_date')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `publication_date` DESC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'genre')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `genre_1` DESC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'rating')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `rating` DESC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
+        $sort = 'surname';
     }
-    elseif ($_GET['sortBy'] === 'asc')
+    else
     {
-        if ($_GET['sort'] === 'title')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `title` ASC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'author')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `surname` DESC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'publication_date')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `publication_date` ASC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'genre')
-        {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `genre_1` ASC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
-        elseif ($_GET['sort'] === 'rating') {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `rating` ASC ');
-            $query->execute();
-            $sortBooks = $query->fetchAll();
-        }
+        $sort = $_GET['sort'];
+    }
+    if ($_GET['sortBy'] === 'asc')
+    {
+        $sortBy = 'ASC';
+    }
+    else
+    {
+        $sortBy = 'DESC';
     }
 
+    $query = $db->prepare("SELECT `image`, `title`,`forename`,`isbn`, `surname`, `publication_date`, `rating`, 
+       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `$sort` $sortBy ");
+    $query->execute();
+    $sortBooks = $query->fetchAll();
         ?>
 <section class="library">
 

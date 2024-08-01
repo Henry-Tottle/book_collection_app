@@ -15,11 +15,7 @@
 <body>
 <header>
     <nav>
-        <div>
-            <form>
-                <input type="text" placeholder="search books"><input type="submit" value="search">
-            </form>
-        </div>
+
         <div>
             <button>Filter</button>
             <a href="index.php">
