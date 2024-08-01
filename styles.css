@@ -84,7 +84,6 @@ p {
 
 footer {
     text-align: center;
-    font-size: 2rem;
     padding-bottom: 1rem;
     padding-top: 1rem;
 }
@@ -95,11 +94,17 @@ footer {
     align-items: center;
 }
 
-footer a{
+.unSort {
+display: flex;
+justify-content: center;
+}
+
+footer a, .unSort a{
+    font-size: 2rem;
     text-decoration: none;
     color: #000000;
 }
-footer a:hover{
+footer a:hover, .unSort a:hover{
     color: orange;
     text-decoration: underline;
 }
