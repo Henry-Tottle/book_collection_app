@@ -17,7 +17,6 @@
     <nav>
 
         <div>
-            <button>Filter</button>
             <a href="index.php">
                 <button>Library</button>
             </a>
@@ -42,7 +41,7 @@
             <input id="surnameID" type="text" name="surname" required placeholder="Smith">
 
             <label for="isbnID">* ISBN: </label>
-            <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13" required>
+            <input id="isbnID" type="text" name="isbn" placeholder="ISBN 13 - just numbers please :)" required>
 
             <label for="formatID">Format: </label>
             <select name="format" id="formatID">
@@ -84,10 +83,10 @@
             $_POST['genre_1'],
             $_POST['image'])) {
             $title = trim($_POST['title']);
-            if (ctype_alpha($_POST['forename'])) {
+            if ($_POST['forename']) {
                 $forename = trim($_POST['forename']);
             }
-            if (ctype_alpha($_POST['surname'])) {
+            if ($_POST['surname']) {
                 $surname = trim($_POST['surname']);
             }
             if (ctype_digit($_POST['isbn'])) {
@@ -96,13 +95,13 @@
             $format = $_POST['format'];
             $publisher = trim($_POST['publisher']);
             $pubDate = $_POST['publication_date'];
-            if (ctype_alpha($_POST['genre_1'])) {
+            if ($_POST['genre_1']) {
                 $genre1 = trim($_POST['genre_1']);
             }
-            if (ctype_alpha($_POST['genre_2'])) {
+            if ($_POST['genre_2']) {
                 $genre2 = trim($_POST['genre_2']);
             }
-            if (ctype_alpha($_POST['genre_3'])) {
+            if ($_POST['genre_3']) {
                 $genre3 = trim($_POST['genre_3']);
             }
             $image = $_POST['image'];

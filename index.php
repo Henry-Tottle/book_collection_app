@@ -84,6 +84,10 @@ if (isset($_GET['sort'], $_GET['sortBy']))
     {
         $sort = 'surname';
     }
+    elseif ($_GET['sort'] === 'genre')
+    {
+        $sort = 'genre_1';
+    }
     else
     {
         $sort = $_GET['sort'];
