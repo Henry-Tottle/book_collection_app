@@ -30,8 +30,6 @@ body {
 nav {
     display: flex;
     justify-content: space-evenly;
-
-    background: rgb(231,180,11);
     background: linear-gradient(0deg, rgba(231,180,11,1) 0%, rgba(255,184,0,1) 100%);    padding: 0.5rem 0;
 }
 
@@ -56,9 +54,7 @@ button {
     padding-bottom: 2rem;
     color: #ffffff;
     text-shadow: 5px 2px 8px rgba(19,15,2,0.6);
-
     font-size: 30pt;
-    background: rgb(0,168,255);
     background: linear-gradient(0deg, rgba(0,168,255,1) 0%, rgba(34,193,195,1) 100%);}
 
 .list{
