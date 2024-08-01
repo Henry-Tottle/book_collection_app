@@ -86,8 +86,7 @@
             $_POST['surname'],
             $_POST['isbn'],
             $_POST['genre_1'],
-            $_POST['image']))
-        {
+            $_POST['image'])) {
             $title = trim($_POST['title']);
             if (ctype_alpha($_POST['forename'])) {
                 $forename = trim($_POST['forename']);
