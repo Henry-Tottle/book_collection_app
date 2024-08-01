@@ -51,6 +51,7 @@
                 <select name="sort" id="sort">
                     <option value="blank" selected disabled hidden>Select an option</option>
                     <option value="title">Title</option>
+                    <option value="author">Author</option>
                     <option value="publication_date">Publication Date</option>
                     <option value="genre">Genre</option>
                     <option value="rating">Rating</option>
@@ -85,7 +86,13 @@ if (isset($_GET['sort'], $_GET['sortBy']))
     {
         if ($_GET['sort'] === 'title')
         {
-            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `title` DESC ');
+            $query = $db->prepare('SELECT `image`, `title`, `surname`, `publication_date`, `rating`, `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `title` DESC ');
+            $query->execute();
+            $sortBooks = $query->fetchAll();
+        }
+        elseif ($_GET['sort'] === 'author')
+        {
+            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `surname` DESC ');
             $query->execute();
             $sortBooks = $query->fetchAll();
         }
@@ -113,6 +120,12 @@ if (isset($_GET['sort'], $_GET['sortBy']))
         if ($_GET['sort'] === 'title')
         {
             $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `title` ASC ');
+            $query->execute();
+            $sortBooks = $query->fetchAll();
+        }
+        elseif ($_GET['sort'] === 'author')
+        {
+            $query = $db->prepare('SELECT `image`, `title`, `forename`, `surname`, `publication_date`, `rating`, `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `surname` DESC ');
             $query->execute();
             $sortBooks = $query->fetchAll();
         }
