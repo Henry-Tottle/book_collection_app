@@ -56,18 +56,27 @@
                 </select>
                 <label for="sortBy"> by: </label>
                 <select name="sortBy" id="sortBy">
-                    <option value="blank" selected disabled hidden>Ascending/Descending</option>
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
-                <input type="submit" value="sort!">
-            </form>
         </div>
+        
         <div>
-            <button>Filter</button>
-            <a href="#library">
-                <button>Library</button>
-            </a>
+                <label for="filter">Filter: </label>
+                <select name="filter" id="filter">
+                    <option value="blank" selected disabled hidden>Select an option</option>
+                    <option value="Contemporary">Contemporary</option>
+                    <option value="Dystopia">Dystopia</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Satire">Satire</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="War">War</option>
+                    <option value="Western">Western</option>
+                </select>
+            <input type="submit" value="Punch it!">
+
+            </form>
+
         </div>
     </nav>
 </header>
@@ -78,26 +87,18 @@
     </div>
 </section>
 <?php
-if (isset($_GET['sort'], $_GET['sortBy']))
-{
-    if ($_GET['sort'] === 'author')
-    {
+
+if (isset($_GET['sort'], $_GET['sortBy'])) {
+    if ($_GET['sort'] === 'author') {
         $sort = 'surname';
-    }
-    elseif ($_GET['sort'] === 'genre')
-    {
+    } elseif ($_GET['sort'] === 'genre') {
         $sort = 'genre_1';
-    }
-    else
-    {
+    } else {
         $sort = $_GET['sort'];
     }
-    if ($_GET['sortBy'] === 'asc')
-    {
+    if ($_GET['sortBy'] === 'asc') {
         $sortBy = 'ASC';
-    }
-    else
-    {
+    } else {
         $sortBy = 'DESC';
     }
 
@@ -105,13 +106,63 @@ if (isset($_GET['sort'], $_GET['sortBy']))
        `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` ORDER BY `$sort` $sortBy ");
     $query->execute();
     $sortBooks = $query->fetchAll();
-        ?>
-<section class="library">
 
-        <h1>Your books, sorted by <?php echo $_GET['sort']; ?>!</h1>
+
+}
+
+if (isset($_GET['filter'])) {
+    $filter = $_GET['filter'];
+    $query = $db->prepare("SELECT `image`, `title`,`forename`,`isbn`, `surname`, `publication_date`, `rating`, 
+       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` WHERE `genre_1` = '$filter'");
+    $query->execute();
+    $filterBooks = $query->fetchAll();
+    if (isset($_GET['sort'], $_GET['sortBy'])) {
+        if ($_GET['sort'] === 'author') {
+            $sort = 'surname';
+        } elseif ($_GET['sort'] === 'genre') {
+            $sort = 'genre_1';
+        } else {
+            $sort = $_GET['sort'];
+        }
+        if ($_GET['sortBy'] === 'asc') {
+            $sortBy = 'ASC';
+        } else {
+            $sortBy = 'DESC';
+        }
+
+        $query = $db->prepare("SELECT `image`, `title`,`forename`,`isbn`, `surname`, `publication_date`, `rating`, 
+       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` WHERE `genre_1` = '$filter' ORDER BY `$sort` $sortBy ");
+        $query->execute();
+        $filterBooks = $query->fetchAll();
+
+
+    }
+}
+
+if (isset($filterBooks) || isset($sortBooks))
+{
+
+
+    ?>
+<section class="library">
+<?php if(isset($sort)) {
+echo "<h1>Your books, sorted by " . $_GET['sort'] . "</h1>";
+}
+else
+{
+    echo '<h1>Your results: </h1>';
+}?>
+
         <div class="list">
             <?php
-            echo dataDisplay($sortBooks);
+            if (isset($_GET['filter']))
+            {
+                echo dataDisplay($filterBooks);
+            }
+            else
+            {
+                echo dataDisplay($sortBooks);
+            }
             ?>
         </div>
     <div class="unSort"><a href="index.php">un-sort ⎌</a></div>
