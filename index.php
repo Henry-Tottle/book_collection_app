@@ -60,7 +60,7 @@
                     <option value="desc">Descending</option>
                 </select>
         </div>
-        
+
         <div>
                 <label for="filter">Filter: </label>
                 <select name="filter" id="filter">
@@ -112,10 +112,6 @@ if (isset($_GET['sort'], $_GET['sortBy'])) {
 
 if (isset($_GET['filter'])) {
     $filter = $_GET['filter'];
-    $query = $db->prepare("SELECT `image`, `title`,`forename`,`isbn`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` WHERE `genre_1` = '$filter'");
-    $query->execute();
-    $filterBooks = $query->fetchAll();
     if (isset($_GET['sort'], $_GET['sortBy'])) {
         if ($_GET['sort'] === 'author') {
             $sort = 'surname';
@@ -130,13 +126,16 @@ if (isset($_GET['filter'])) {
             $sortBy = 'DESC';
         }
 
-        $query = $db->prepare("SELECT `image`, `title`,`forename`,`isbn`, `surname`, `publication_date`, `rating`, 
-       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` WHERE `genre_1` = '$filter' ORDER BY `$sort` $sortBy ");
-        $query->execute();
-        $filterBooks = $query->fetchAll();
-
-
     }
+    else{
+        $sort = 'book_id';
+        $sortBy = 'ASC';
+    }
+
+    $query = $db->prepare("SELECT `books`.`id` AS `book_id`, `image`, `title`,`forename`,`isbn`, `surname`, `publication_date`, `rating`, 
+       `genre_1` FROM `books` INNER JOIN `authors` ON `authors`.`id` = `author_id` WHERE `genre_1` = '$filter' ORDER BY `$sort` $sortBy");
+    $query->execute();
+    $filterBooks = $query->fetchAll();
 }
 
 if (isset($filterBooks) || isset($sortBooks))
@@ -145,12 +144,12 @@ if (isset($filterBooks) || isset($sortBooks))
 
     ?>
 <section class="library">
-<?php if(isset($sort)) {
+<?php if (!isset($filterBooks)) {
 echo "<h1>Your books, sorted by " . $_GET['sort'] . "</h1>";
 }
 else
 {
-    echo '<h1>Your results: </h1>';
+    echo '<h1>Your filtered results: </h1>';
 }?>
 
         <div class="list">
